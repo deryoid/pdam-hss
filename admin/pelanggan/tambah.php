@@ -176,6 +176,9 @@ include '../../templates/head.php';
             'Tidak Aktif',
             'Belum Dipasang',
             NULL,
+            NULL,
+            NULL,
+            NULL,
             NULL
             )");
 

@@ -1,9 +1,6 @@
 <?php
 require '../../config/config.php';
 require '../../config/koneksi.php';
-$id   = $_GET['id'];
-$data = $koneksi->query("SELECT * FROM pelanggan WHERE id_pelanggan = '$id'");
-$row  = $data->fetch_array();
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,12 +29,14 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Ubah Pelanggan</h1>
+                            <h1 class="m-0 text-dark">Pelanggan</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
+                                <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+                                <!-- <li class="breadcrumb-item active">Data Master</li> -->
                                 <li class="breadcrumb-item active">Pelanggan</li>
-                                <li class="breadcrumb-item active">Ubah Data</li>
+                                <li class="breadcrumb-item active">Tambah Data</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -62,36 +61,36 @@ include '../../templates/head.php';
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
 
-                                   
-                                        <div class="form-group row">
+                                    <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">No Pelanggan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="no_pelanggan" value="<?= $row['no_pelanggan'] ?>">
+                                                <input type="text" class="form-control" name="no_pelanggan">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">NIK</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nik" value="<?= $row['nik'] ?>">
+                                                <input type="text" class="form-control" name="nik">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Nama Pelanggan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama_pelanggan" value="<?= $row['nama_pelanggan'] ?>">
+                                                <input type="text" class="form-control" name="nama_pelanggan">
                                             </div>
                                         </div>
-                                        
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Kecamatan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="kecamatan" value="<?= $row['kecamatan'] ?>">
+                                                <input type="text" class="form-control" name="kecamatan">
                                             </div>
                                         </div>
+                                        
+                                        
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Lokasi Rumah</label>
                                             <div class="col-sm-10">
-                                                <textarea type="text" class="form-control" name="lokasi_rumah"><?= $row['lokasi_rumah'] ?></textarea>
+                                                <textarea type="text" class="form-control" name="lokasi_rumah"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -103,9 +102,7 @@ include '../../templates/head.php';
                                                     $sd = $koneksi->query("SELECT * FROM golongan ORDER BY id_golongan DESC");
                                                     foreach ($sd as $item) {
                                                     ?>
-                                                       <option value="<?= $item['id_golongan'] ?>" <?php if ($item['id_golongan'] == $row['id_golongan']) {
-                                                                            echo 'selected';
-                                                                        } ?>><?= $item['id_golongan'] ?><?= $item['nama_golongan'] ?></option>
+                                                        <option value="<?= $item['id_golongan'] ?>"><?= $item['nama_golongan'] ?></option>
                                                         
                                                     <?php } ?>
                                                 </select>
@@ -114,30 +111,16 @@ include '../../templates/head.php';
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Link Gmap</label>
                                             <div class="col-sm-10">
-                                                <textarea type="text" class="form-control" name="link_gmap"><?= $row['link_gmap'] ?></textarea>
+                                                <textarea type="text" class="form-control" name="link_gmap"></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Status</label>
-                                            <div class="col-sm-10">
-                                            <select class="form-control select2" data-placeholder="Pilih" id="status" name="status" required="">
-                                                    <option value="Aktif" <?php if ($row['status'] == "Aktif") {
-                                                                            echo "selected";
-                                                                            } ?>>Aktif</option>
-                                                    <option value="Tidak Aktif" <?php if ($row['status'] == "Tidak Aktif") {
-                                                                                echo "selected";
-                                                                            } ?>>Tidak Aktif</option>
-                                            </select>
-                                            </div>
-                                        </div>
-                                       
-
+                                        
                                     </div>
                                     <!-- /.card-body -->
 
                                     <div class="card-footer" style="background-color: white;">
                                         <a href="<?= base_url('admin/pelanggan/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
-                                        <button type="submit" name="submit" class="btn bg-gradient-primary float-right mr-2"><i class="fa fa-save"> Ubah</i></button>
+                                        <button type="submit" name="submit" class="btn bg-gradient-primary float-right mr-2"><i class="fa fa-save"> Simpan</i></button>
                                     </div>
                                     <!-- /.card-footer -->
 
@@ -178,39 +161,34 @@ include '../../templates/head.php';
         $lokasi_rumah         = $_POST['lokasi_rumah'];
         $id_golongan         = $_POST['id_golongan'];
         $link_gmap          = $_POST['link_gmap'];
-        $status      = $_POST['status'];
-
-        $submit = $koneksi->query("UPDATE pelanggan SET  
-                            no_pelanggan = '$no_pelanggan',
-                            nik = '$nik',
-                            nama_pelanggan = '$nama_pelanggan',
-                            kecamatan = '$kecamatan',
-                            lokasi_rumah = '$lokasi_rumah',
-                            id_golongan = '$id_golongan',
-                            link_gmap = '$link_gmap',
-                            status = '$status'
-                            WHERE 
-                            id_pelanggan = '$id'");
 
 
 
-// $cekstatus = $koneksi->query("SELECT * FROM sektor_atm AS sa
-// LEFT JOIN perbaikan AS p ON sa.id_sektoratm = p.id_sektoratm
-// WHERE sa.id_sektoratm  = '$id'")->fetch_array();
-// var_dump($cekstatus);die;
-//         if ($cekstatus['status'] == "Tidak Aktif"){
-//            $koneksi->query("UPDATE perbaikan SET  
-//                        status_perbaikan = 'Sedang Diperbaiki'
-//                        WHERE 
-//                        id_sektoratm = '$id_sektoratm'");
-//         }   
-if ($submit) {
-    $_SESSION['pesan'] = "Data Pelanggan Ditambahkan";
+        $submit = $koneksi->query("INSERT INTO pelanggan VALUES (
+            NULL,
+            '$no_pelanggan',
+            '$nik',
+            '$nama_pelanggan',
+            '$kecamatan',
+            '$lokasi_rumah',
+            '$id_golongan',
+            '$link_gmap',
+            'Tidak Aktif',
+            'Belum Dipasang',
+            NULL,
+            NULL
+            )");
+
+
+       
+        if ($submit) {
+
+            $_SESSION['pesan'] = "Data Pelanggan Ditambahkan";
             echo "<script>window.location.replace('../pelanggan/');</script>";
         }
     }
-
     ?>
+
 
 </body>
 

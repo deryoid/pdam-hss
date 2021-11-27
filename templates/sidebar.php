@@ -62,7 +62,7 @@
                 </a>
               </li>
             </ul>
-           
+<!--            
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="<?= base_url('admin/petugas') ?>" class="nav-link">
@@ -70,7 +70,7 @@
                   <p>Petugas</p>
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </li>
 
           <li class="nav-item">
@@ -82,39 +82,39 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/maintance') ?>" class="nav-link">
-              <i class="nav-icon fas fa-toolbox"></i>
-              <p>
-                Pemeliharaan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('admin/grafik') ?>" class="nav-link">
-              <i class="nav-icon fa fa-chart-pie"></i>
-              <p style="font-size : 13px;">
-                Grafik Perbaikan <br> 
-                dan Pemeliharaan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('admin/sektoratm') ?>" class="nav-link">
+            <a href="<?= base_url('admin/pemasangan') ?>" class="nav-link">
               <i class="nav-icon fas fa-tools"></i>
               <p>
-                Pencabutan Mesin
+                Pemasangan Water Meter
               </p>
             </a>
           </li>
-
           <li class="nav-item">
-            <a href="<?= base_url('admin/perbaikan') ?>" class="nav-link">
+            <a href="<?= base_url('admin/pencabutan') ?>" class="nav-link">
               <i class="nav-icon fas fa-tools"></i>
               <p>
-                Pemasangan Mesin
+                Pencabutan Water Meter
               </p>
             </a>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Laporan
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/golongan') ?>" class="nav-link">
+                  <i class="fas fa-print nav-icon"></i>
+                  <p>Golongan</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+         
 
 
         </ul>

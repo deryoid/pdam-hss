@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 27 Okt 2021 pada 08.50
+-- Waktu pembuatan: 27 Nov 2021 pada 06.15
 -- Versi server: 5.7.24
 -- Versi PHP: 7.4.12
 
@@ -83,15 +83,20 @@ CREATE TABLE `pelanggan` (
   `status` varchar(75) NOT NULL,
   `status_pasang` varchar(150) DEFAULT NULL,
   `bukti_pasang` varchar(255) DEFAULT NULL,
-  `tgl_pemasangan` varchar(100) DEFAULT NULL
+  `tgl_pemasangan` varchar(100) DEFAULT NULL,
+  `status_cabut` varchar(100) DEFAULT NULL,
+  `bukti_cabut` varchar(255) DEFAULT NULL,
+  `tgl_pencabutan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `no_pelanggan`, `nik`, `nama_pelanggan`, `kecamatan`, `lokasi_rumah`, `id_golongan`, `link_gmap`, `status`, `status_pasang`, `bukti_pasang`, `tgl_pemasangan`) VALUES
-(7, '77236662789', '637102221210008', 'Ummi Salamah', 'Sungai Raya', 'Jl. Pahlawan No.33, Sungai Raya, Kab. Kandangan', 2, '-', 'Aktif', 'Dipasang', '18660.jpeg', '2021-10-27');
+INSERT INTO `pelanggan` (`id_pelanggan`, `no_pelanggan`, `nik`, `nama_pelanggan`, `kecamatan`, `lokasi_rumah`, `id_golongan`, `link_gmap`, `status`, `status_pasang`, `bukti_pasang`, `tgl_pemasangan`, `status_cabut`, `bukti_cabut`, `tgl_pencabutan`) VALUES
+(7, '77236662789', '637102221210008', 'Ummi Salamah', 'Sungai Raya', 'Jl. Pahlawan No.33, Sungai Raya, Kab. Kandangan', 2, '-', 'Aktif', 'Belum Dipasang', '18660.jpeg', '2021-10-27', NULL, NULL, NULL),
+(8, '77236662710', '637123993299910', 'Syahrani', 'Kandangan', 'Jl. Budi Bakti, Amawang Kiri Muka, Kandangan, Kabupaten Hulu Sungai Selatan, Kalimantan Selatan 71213', 3, 'https://www.google.co.id/maps/dir//Jl.+Budi+Bakti,+Amawang+Kiri+Muka,+Kandangan,+Kabupaten+Hulu+Sungai+Selatan,+Kalimantan+Selatan+71213/@-2.7499064,115.2067415,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x2de50aebc2a83677:0x6c03c6e5bdb96ce4!2m2!1d115.2540572!2d-2.777668', 'Aktif', 'Dipasang', '36720.jpg', '2021-11-27', NULL, NULL, NULL),
+(9, '7723323111', '6346011107960002', 'Ali', 'Sungai Raya', '-', 1, '111', 'Tidak Aktif', 'Belum Dipasang', '', '2021-11-26', 'Dicabut', '14590.jpg', '2021-11-27');
 
 -- --------------------------------------------------------
 
@@ -131,14 +136,6 @@ CREATE TABLE `petugas` (
   `nama_petugas` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `petugas`
---
-
-INSERT INTO `petugas` (`id_petugas`, `id_user`, `nama_petugas`, `email`) VALUES
-(3, 3, 'Rizky Maulana Semanggi', 'dery.fk.ulm@gmail.com'),
-(4, 4, 'Maulana Malik Ibrahim', 'dery037yj@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -229,7 +226,7 @@ ALTER TABLE `maintance`
 -- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `perbaikan`
