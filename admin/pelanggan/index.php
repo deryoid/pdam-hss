@@ -107,7 +107,7 @@ include '../../templates/head.php';
                                                         </td>
                                                         <td align="center">
                                                             
-                                                            <a href="printdetail?id=<?= $row['id_pelanggan'] ?>" target="blank" class="btn btn-info btn-sm" title="detail"><i class="fa fa-print"></i></a>
+                                                            <!-- <a href="printdetail?id=<?= $row['id_pelanggan'] ?>" target="blank" class="btn btn-info btn-sm" title="detail"><i class="fa fa-print"></i></a> -->
                                                             <a href="edit?id=<?= $row['id_pelanggan'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                                                             <a href="hapus?id=<?= $row['id_pelanggan'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                         </td>
@@ -181,7 +181,7 @@ include '../../templates/head.php';
                                             <select class="form control select2" name="kecamatan" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
-                                                    $sd = $koneksi->query("SELECT kecamatan FROM sektor_atm GROUP BY kecamatan");
+                                                    $sd = $koneksi->query("SELECT kecamatan FROM pelanggan GROUP BY kecamatan");
                                                     foreach ($sd as $item) {
                                                     ?>
                                                         <option value="<?= $item['kecamatan'] ?>"><?= $item['kecamatan'] ?></option>

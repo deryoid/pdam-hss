@@ -4,7 +4,7 @@
 
     $no = 1;
 
-    $kecamatan   = $_POST['kecamatan'];
+    $nama_golongan   = $_POST['nama_golongan'];
 
   $bln = array(
           '01' => 'Januari',
@@ -37,7 +37,7 @@
     
     <h3><center><br>
       LAPORAN DATA PELANGGAN<br> 
-      Di Kecamatan : <?= $kecamatan;?><br> 
+      Dengan Golongan : <?= $nama_golongan;?><br> 
     </center></h3><br><br>
                   <div class="row">
                     <div class="col-sm-12">
@@ -59,7 +59,7 @@
                                             $no = 1;
                                             $data = $koneksi->query("SELECT * FROM pelanggan AS sa 
                                             LEFT JOIN golongan AS g ON sa.id_golongan = g.id_golongan
-                                            WHERE sa.kecamatan = '$kecamatan'");
+                                            WHERE g.nama_golongan = '$nama_golongan'");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">

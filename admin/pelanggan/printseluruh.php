@@ -29,13 +29,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LAPORAN DATA SEKTOR ATM</title>
+  <title>LAPORAN DATA PELANGGAN</title>
 </head>
 <body>
 
     
     <h3><center><br>
-      LAPORAN DATA SEKTOR ATM<br> 
+      LAPORAN DATA PELANGGAN<br> 
     </center></h3><br><br>
                   <div class="row">
                     <div class="col-sm-12">
@@ -44,30 +44,30 @@
                             <thead class="bg-blue">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>Kode Barang</th>
-                                                    <th>Bank</th>
+                                                    <th>No Pelanggan</th>
+                                                    <th>NIK</th>
+                                                    <th>Nama Pelanggan</th>
                                                     <th>Kecamatan</th>
-                                                    <th>Lokasi ATM</th>
-                                                    <th>Link Gmaps</th>
-                                                    <th>Tanggal Peletakan</th>
+                                                    <th>Lokasi Rumah</th>
+                                                    <th>Golongan</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM sektor_atm AS sa 
-                                            LEFT JOIN barang AS b ON sa.kode_barang = b.kode_barang");
+                                            $data = $koneksi->query("SELECT * FROM pelanggan AS sa 
+                                            LEFT JOIN golongan AS g ON sa.id_golongan = g.id_golongan");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
-                                                        <td align="center"><?= $no++ ?></td>
-                                                        <td><?= $row['kode_barang'] ?></td>
-                                                        <td><?= $row['bank'] ?></td>
+                                                    <td align="center"><?= $no++ ?></td>
+                                                        <td><?= $row['no_pelanggan'] ?></td>
+                                                        <td><?= $row['nik'] ?></td>
+                                                        <td><?= $row['nama_pelanggan'] ?></td>
                                                         <td><?= $row['kecamatan'] ?></td>
-                                                        <td><?= $row['lokasi_atm'] ?></td>
-                                                        <td align="center"><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></td>
-                                                        <td><?= $row['tgl_peletakan'] ?></td>
+                                                        <td><?= $row['lokasi_rumah'] ?></td>
+                                                        <td><?= $row['nama_golongan'] ?></td>
                                                         <td><?= $row['status'] ?></td>
                                                     </tr>
                                                 </tbody>

@@ -4,8 +4,6 @@
 
     $no = 1;
 
-    $kecamatan   = $_POST['kecamatan'];
-
   $bln = array(
           '01' => 'Januari',
           '02' => 'Februari',
@@ -30,14 +28,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LAPORAN DATA SEKTOR ATM</title>
+  <title>LAPORAN DATA PENCABUTAN WATER METER</title>
 </head>
 <body>
 
     
     <h3><center><br>
-      LAPORAN DATA SEKTOR ATM<br> 
-      Di Kecamatan : <?= $kecamatan;?><br> 
+      LAPORAN DATA PENCABUTAN WATER METER
     </center></h3><br><br>
                   <div class="row">
                     <div class="col-sm-12">
@@ -46,32 +43,36 @@
                             <thead class="bg-blue">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>Kode Barang</th>
-                                                    <th>Bank</th>
-                                                    <th>Kecamatan</th>
-                                                    <th>Lokasi ATM</th>
-                                                    <th>Link Gmaps</th>
-                                                    <th>Tanggal Peletakan</th>
+                                                    <th>No Pelanggan</th>
+                                                    <th>Pelanggan</th>
                                                     <th>Status</th>
+                                                    <th>Status Cabut</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM sektor_atm AS sa 
-                                            LEFT JOIN barang AS b ON sa.kode_barang = b.kode_barang
-                                            WHERE kecamatan = '$kecamatan'");
+                                            $data = $koneksi->query("SELECT * FROM pelanggan AS sa 
+                                            LEFT JOIN golongan AS g ON sa.id_golongan = g.id_golongan
+                                            WHERE sa.status_cabut = 'Dicabut' ORDER BY sa.id_pelanggan DESC");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
-                                                        <td align="center"><?= $no++ ?></td>
-                                                        <td><?= $row['kode_barang'] ?></td>
-                                                        <td><?= $row['bank'] ?></td>
-                                                        <td><?= $row['kecamatan'] ?></td>
-                                                        <td><?= $row['lokasi_atm'] ?></td>
-                                                        <td align="center"><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></td>
-                                                        <td><?= $row['tgl_peletakan'] ?></td>
+                                                        <td><?= $no++ ?></td>
+                                                        <td><?= $row['no_pelanggan'] ?></td>
+                                                        <td>
+                                                            <ul>
+                                                                <li><?= $row['nik'] ?></li>
+                                                                <li><?= $row['nama_pelanggan'] ?></li>
+                                                                <li><?= $row['kecamatan'] ?></li>
+                                                                <li><?= $row['lokasi_rumah'] ?></li>
+                                                                <li><?= $row['nama_golongan'] ?></li>
+                                                            </ul>
+                                                        </td>
                                                         <td><?= $row['status'] ?></td>
+                                                        <td>
+                                                            <?= $row['status_cabut'] ?> 
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             <?php } ?>
