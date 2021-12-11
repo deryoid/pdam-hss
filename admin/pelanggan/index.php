@@ -51,7 +51,8 @@ include '../../templates/head.php';
                             <div class="card card-primary card-outline">
                                 <div class="card-header">
                                     <a href="tambah" class="btn bg-blue"><i class="fa fa-plus-circle"> Tambah Data</i></a>
-                                    <a href="#" data-toggle="modal" data-target="#modal_print" class="btn bg-info"><i class="fa fa-print"> Cetak</i></a>
+                                    <a href="#" data-toggle="modal" data-target="#modal_print" class="btn bg-info"><i class="fa fa-print"> Cetak Perkecamatan</i></a>
+                                    <a href="#" data-toggle="modal" data-target="#modal_printpg" class="btn bg-info"><i class="fa fa-print"> Cetak Pergolongan</i></a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -193,6 +194,58 @@ include '../../templates/head.php';
                                         <hr>
                                         <input type="submit" name="print" class="btn btn-success" value="Print">
                                         <a href="printseluruh" target="blank" class="btn bg-info"> Cetak Seluruh</a> 
+
+                                </form>
+                                       
+                                </div>
+                            </div>                          
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+ <!-- MODAL Print -->
+ <div id="modal_printpg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cetak</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+    <!-- Start content -->
+        <div class="content">
+            <div class="container"> 
+                <div class="row">
+                     <div class="col-sm-12">
+                          <div class="card-box">
+                                <form class="form-horizontal" action="printgol" method="POST" target="blank">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-12 control-label">Pilih Golongan </label>
+                                            <div class="col-sm-12">
+                                            <select class="form control select2" name="nama_golongan" data-placeholder="Pilih" style="width: 100%;" required>
+                                                    <option value=""></option>
+                                                    <?php
+                                                    $sd1 = $koneksi->query("SELECT * FROM golongan");
+                                                    foreach ($sd1 as $item1) {
+                                                    ?>
+                                                        <option value="<?= $item1['nama_golongan'] ?>"><?= $item1['nama_golongan'] ?></option>
+                                                        
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <input type="submit" name="print" class="btn btn-success" value="Print">
+                                        
 
                                 </form>
                                        
