@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-light-blue elevation-2" >
+<aside class="main-sidebar sidebar-light-blue elevation-2">
   <!-- dark-primary  -->
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
@@ -62,7 +62,7 @@
                 </a>
               </li>
             </ul>
-<!--            
+            <!--            
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="<?= base_url('admin/petugas') ?>" class="nav-link">
@@ -97,6 +97,22 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin/gantimeter') ?>" class="nav-link">
+              <i class="nav-icon fas fa-pager"></i>
+              <p>
+                Ganti Meter
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('admin/kebocoran') ?>" class="nav-link">
+              <i class="nav-icon fas fa-water"></i>
+              <p>
+                Kebocoran
+              </p>
+            </a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -121,7 +137,7 @@
                 </a>
               </li>
             </ul>
-            
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="<?= base_url('admin/pemasangan/print') ?>" target="blank" class="nav-link">
@@ -138,8 +154,24 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/gantimeter/print') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-print nav-icon"></i>
+                  <p>Ganti Meter</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/kebocoran/print') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-print nav-icon"></i>
+                  <p>Kebocoran</p>
+                </a>
+              </li>
+            </ul>
           </li>
-         
+
 
 
         </ul>
@@ -167,11 +199,11 @@
             <a href="<?= base_url('teknisi/lokasiatm') ?>" class="nav-link">
               <i class="nav-icon fas fa-map"></i>
               <p>
-               List Lokasi ATM
+                List Lokasi ATM
               </p>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a href="<?= base_url('teknisi/perbaikan') ?>" class="nav-link">
               <i class="nav-icon fas fa-tools"></i>
@@ -188,7 +220,7 @@
               </p>
             </a>
           </li>
-          
+
 
           <li class="nav-item">
             <a href="<?= base_url('teknisi/maintance') ?>" class="nav-link">
@@ -207,4 +239,3 @@
   </div>
   <!-- /.sidebar -->
 </aside>
-

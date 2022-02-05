@@ -29,13 +29,12 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Barang</h1>
+                            <h1 class="m-0 text-dark">Ganti Meter</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Data Master</li>
-                                <li class="breadcrumb-item active">Barang</li>
+                                <li class="breadcrumb-item active">Ganti Meter</li>
                                 <li class="breadcrumb-item active">Tambah Data</li>
                             </ol>
                         </div><!-- /.col -->
@@ -55,7 +54,7 @@ include '../../templates/head.php';
                                 <!-- Horizontal Form -->
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title">Barang</h3>
+                                        <h3 class="card-title">Ganti Meter</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
@@ -63,35 +62,47 @@ include '../../templates/head.php';
 
 
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Kode Barang</label>
+                                            <label for="" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="kode_barang">
+                                                <input type="text" class="form-control" name="nama">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Nama Barang</label>
+                                            <label for="" class="col-sm-2 col-form-label">Tanggal Permintaan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama_barang">
+                                                <input type="date" class="form-control" name="tgl_permintaan">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Tahun Produksi</label>
+                                            <label for="" class="col-sm-2 col-form-label">Link Gmaps</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="tahun_produksi">
+                                                <input type="text" class="form-control" name="link_gmap">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Lokasi Produksi</label>
+                                            <label for="" class="col-sm-2 col-form-label">Nama Teknisi</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="lokasi_produksi">
+                                                <input type="text" class="form-control" name="nama_teknisi">
                                             </div>
                                         </div>
-                                        
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">Tanggal Perbaikan</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" name="tgl_perbaikan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">Biaya</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="biaya">
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <!-- /.card-body -->
 
                                     <div class="card-footer" style="background-color: white;">
-                                        <a href="<?= base_url('admin/barang/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
+                                        <a href="<?= base_url('admin/gantimeter/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
                                         <button type="submit" name="submit" class="btn bg-gradient-primary float-right mr-2"><i class="fa fa-save"> Simpan</i></button>
                                     </div>
                                     <!-- /.card-footer -->
@@ -126,24 +137,29 @@ include '../../templates/head.php';
 
     <?php
     if (isset($_POST['submit'])) {
-        $kode_barang         = $_POST['kode_barang'];
-        $nama_barang         = $_POST['nama_barang'];
-        $tahun_produksi      = $_POST['tahun_produksi'];
-        $lokasi_produksi     = $_POST['lokasi_produksi'];
+        $nama         = $_POST['nama'];
+        $tgl_permintaan      = $_POST['tgl_permintaan'];
+        $link_gmap        = $_POST['link_gmap'];
+        $nama_teknisi     = $_POST['nama_teknisi'];
+        $tgl_perbaikan     = $_POST['tgl_perbaikan'];
+        $biaya     = $_POST['biaya'];
 
 
 
-        $submit = $koneksi->query("INSERT INTO barang VALUES (
-            '$kode_barang',
-            '$nama_barang',
-            '$tahun_produksi',
-            '$lokasi_produksi'
+        $submit = $koneksi->query("INSERT INTO ganti_meter VALUES (
+            NULL,
+            '$nama',
+            '$tgl_permintaan',
+            '$link_gmap',
+            '$nama_teknisi',
+            '$tgl_perbaikan',
+            '$biaya'
             )");
 
         if ($submit) {
 
-            $_SESSION['pesan'] = "Data Barang Ditambahkan";
-            echo "<script>window.location.replace('../barang/');</script>";
+            $_SESSION['pesan'] = "Data Ditambahkan";
+            echo "<script>window.location.replace('../gantimeter/');</script>";
         }
     }
     ?>
