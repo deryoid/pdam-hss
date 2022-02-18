@@ -76,7 +76,7 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Link Gmaps</label>
+                                            <label for="" class="col-sm-2 col-form-label">Alamat</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="link_gmap" value="<?= $row['link_gmap']; ?>">
                                             </div>

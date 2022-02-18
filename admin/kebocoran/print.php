@@ -30,7 +30,7 @@ $bln = array(
 <html>
 
 <head>
-    <title>LAPORAN DATA GANTI METER</title>
+    <title>LAPORAN DATA KEBOCORAN</title>
 </head>
 
 <body>
@@ -38,46 +38,43 @@ $bln = array(
 
     <h3>
         <center><br>
-            LAPORAN DATA GANTI METER<br>
+            LAPORAN DATA KEBOCORAN<br>
         </center>
     </h3><br><br>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
                 <table border="1" cellspacing="0" width="100%">
-                    <thead class="bg-blue">
-                        <tr align="center">
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Tanggal Permintaan</th>
-                            <th>Link Gmaps</th>
-                            <th>Nama Teknisi</th>
-                            <th>Tanggal Perbaikan</th>
-                            <th>Biaya</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </thead>
-                    <?php
-                    $no = 1;
-                    $data = $koneksi->query("SELECT * FROM ganti_meter ORDER BY id_gm DESC");
-                    while ($row = $data->fetch_array()) {
-                    ?>
-                        <tbody style="background-color: white">
-                            <tr>
-                                <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nama'] ?></td>
-                                <td><?= $row['tgl_permintaan'] ?></td>
-                                <td align="center"><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></td>
-                                <td><?= $row['nama_teknisi'] ?></td>
-                                <td><?= $row['tgl_perbaikan'] ?></td>
-                                <td><?= $row['biaya'] ?></td>
-                                <td align="center">
-                                    <a href="edit?id=<?= $row['id_gm'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                    <a href="hapus?id=<?= $row['id_gm'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    <?php } ?>
+                <thead class="bg-blue">
+                                                <tr align="center">
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal Permintaan</th>
+                                                    <th>Alamat</th>
+                                                    <th>Nama Teknisi</th>
+                                                    <th>Letak Kebocoran</th>
+                                                    <th>Tanggal Perbaikan</th>
+                                                    <th>Biaya</th>
+                                                </tr>
+                                            </thead>
+                                            <?php
+                                            $no = 1;
+                                            $data = $koneksi->query("SELECT * FROM kebocoran ORDER BY id_kebocoran DESC");
+                                            while ($row = $data->fetch_array()) {
+                                            ?>
+                                                <tbody style="background-color: white">
+                                                    <tr>
+                                                        <td align="center"><?= $no++ ?></td>
+                                                        <td><?= $row['nama'] ?></td>
+                                                        <td><?= $row['tgl_permintaan'] ?></td>
+                                                        <td><?= $row['link_gmap'] ?></td>
+                                                        <td><?= $row['nama_teknisi'] ?></td>
+                                                        <td><?= $row['letak_kebocoran'] ?></td>
+                                                        <td><?= $row['tgl_perbaikan'] ?></td>
+                                                        <td><?= $row['biaya'] ?></td>
+                                                    </tr>
+                                                </tbody>
+                                            <?php } ?>
                 </table>
 
             </div>

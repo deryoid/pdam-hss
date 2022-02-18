@@ -73,7 +73,7 @@ include '../../templates/head.php';
                                                     <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Tanggal Permintaan</th>
-                                                    <th>Link Gmaps</th>
+                                                    <th>Alamat</th>
                                                     <th>Nama Teknisi</th>
                                                     <th>Tanggal Perbaikan</th>
                                                     <th>Biaya</th>
@@ -90,7 +90,7 @@ include '../../templates/head.php';
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td><?= $row['nama'] ?></td>
                                                         <td><?= tgl_indo($row['tgl_permintaan']) ?></td>
-                                                        <td align="center"><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></td>
+                                                        <td><?= $row['link_gmap'] ?></td>
                                                         <td><?= $row['nama_teknisi'] ?></td>
                                                         <td><?= $row['tgl_perbaikan'] ?></td>
                                                         <td><?= $row['biaya'] ?></td>

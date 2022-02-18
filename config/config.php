@@ -1,6 +1,6 @@
 <?php 
 	function base_url($url = null){
-		$base_url = "http://localhost:8888/pdam-hss";
+		$base_url = "http://localhost/pdam-hss";
 		if ($url != null) {
 			return $base_url."/".$url;
 		}else{

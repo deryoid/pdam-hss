@@ -50,11 +50,10 @@ $bln = array(
                             <th>No</th>
                             <th>Nama</th>
                             <th>Tanggal Permintaan</th>
-                            <th>Link Gmaps</th>
+                            <th>Alamat</th>
                             <th>Nama Teknisi</th>
                             <th>Tanggal Perbaikan</th>
                             <th>Biaya</th>
-                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <?php
@@ -67,14 +66,10 @@ $bln = array(
                                 <td align="center"><?= $no++ ?></td>
                                 <td><?= $row['nama'] ?></td>
                                 <td><?= $row['tgl_permintaan'] ?></td>
-                                <td align="center"><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></td>
+                                <td><?= $row['link_gmap'] ?></td>
                                 <td><?= $row['nama_teknisi'] ?></td>
                                 <td><?= $row['tgl_perbaikan'] ?></td>
                                 <td><?= $row['biaya'] ?></td>
-                                <td align="center">
-                                    <a href="edit?id=<?= $row['id_gm'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                    <a href="hapus?id=<?= $row['id_gm'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
-                                </td>
                             </tr>
                         </tbody>
                     <?php } ?>
