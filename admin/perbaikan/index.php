@@ -81,31 +81,31 @@ include '../../templates/head.php';
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
-                                            <?php
-                                            $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM perbaikan AS p 
+                                            <tbody style="background-color: white">
+                                                <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM perbaikan AS p 
                                             LEFT JOIN sektor_atm AS sa ON p.id_sektoratm = sa.id_sektoratm 
                                             LEFT JOIN barang AS b ON sa.kode_barang = b.kode_barang
                                             LEFT JOIN petugas AS ps ON p.id_petugas = ps.id_petugas
                                             ORDER BY p.id_perbaikan DESC");
-                                            while ($row = $data->fetch_array()) {
-                                            ?>
-                                                <tbody style="background-color: white">
+                                                while ($row = $data->fetch_array()) {
+                                                ?>
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td>
                                                             <ul>
-                                                            <li>Kode ATM : <?= $row['kode_barang'] ?></li>
-                                                            <li>Nama ATM : <?= $row['nama_barang'] ?></li>
-                                                            <li>Tanggal Peletakan : <?= $row['tgl_peletakan'] ?></li>
-                                                            <li>Status Engine : <?= $row['status'] ?></li>
+                                                                <li>Kode ATM : <?= $row['kode_barang'] ?></li>
+                                                                <li>Nama ATM : <?= $row['nama_barang'] ?></li>
+                                                                <li>Tanggal Peletakan : <?= $row['tgl_peletakan'] ?></li>
+                                                                <li>Status Engine : <?= $row['status'] ?></li>
                                                             </ul>
                                                         </td>
                                                         <td><?= $row['nama_petugas'] ?></td>
                                                         <td>
                                                             <ul>
-                                                            <li><?= $row['lokasi_atm'] ?></li>
-                                                            <li><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></li>
+                                                                <li><?= $row['lokasi_atm'] ?></li>
+                                                                <li><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></li>
                                                             </ul>
                                                         </td>
                                                         <td><?= $row['tanggal_perbaikan'] ?></td>
@@ -116,8 +116,8 @@ include '../../templates/head.php';
                                                             <a href="hapus?id=<?= $row['id_perbaikan'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </tbody>
                                         </table>
                                     </div>
 
@@ -162,8 +162,8 @@ include '../../templates/head.php';
 </html>
 
 
- <!-- MODAL Print -->
- <div id="modal_print" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<!-- MODAL Print -->
+<div id="modal_print" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -171,18 +171,18 @@ include '../../templates/head.php';
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-    <!-- Start content -->
-        <div class="content">
-            <div class="container"> 
-                <div class="row">
-                     <div class="col-sm-12">
-                          <div class="card-box">
-                                <form class="form-horizontal" action="printperbaikan" method="POST" target="blank">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                                    <form class="form-horizontal" action="printperbaikan" method="POST" target="blank">
 
                                         <div class="form-group">
                                             <label class="col-sm-12 control-label">Pilih Petugas </label>
                                             <div class="col-sm-12">
-                                            <select class="form control select2" name="nama_petugas" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form control select2" name="nama_petugas" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
                                                     $sd = $koneksi->query("SELECT nama_petugas FROM perbaikan AS p
@@ -192,7 +192,7 @@ include '../../templates/head.php';
                                                     foreach ($sd as $item) {
                                                     ?>
                                                         <option value="<?= $item['nama_petugas'] ?>"><?= $item['nama_petugas'] ?></option>
-                                                        
+
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -200,20 +200,20 @@ include '../../templates/head.php';
                                         <hr>
                                         <input type="submit" name="print" class="btn btn-success" value="Print">
 
-                                </form>
-                                       
+                                    </form>
+
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
- <!-- MODAL Print -->
- <div id="modal_printatm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<!-- MODAL Print -->
+<div id="modal_printatm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -221,18 +221,18 @@ include '../../templates/head.php';
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-    <!-- Start content -->
-        <div class="content">
-            <div class="container"> 
-                <div class="row">
-                     <div class="col-sm-12">
-                          <div class="card-box">
-                                <form class="form-horizontal" action="printperbaikanatm" method="POST" target="blank">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                                    <form class="form-horizontal" action="printperbaikanatm" method="POST" target="blank">
 
                                         <div class="form-group">
                                             <label class="col-sm-12 control-label">Pilih ATM </label>
                                             <div class="col-sm-12">
-                                            <select class="form control select2" name="id_sektoratm" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form control select2" name="id_sektoratm" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
                                                     $atm = $koneksi->query("SELECT * FROM sektor_atm AS sa 
@@ -240,7 +240,7 @@ include '../../templates/head.php';
                                                     foreach ($atm as $item) {
                                                     ?>
                                                         <option value="<?= $item['id_sektoratm'] ?>"><?= $item['kode_barang'] ?> | <?= $item['nama_barang'] ?> | <?= $item['bank'] ?></option>
-                                                        
+
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -248,13 +248,13 @@ include '../../templates/head.php';
                                         <hr>
                                         <input type="submit" name="print" class="btn btn-success" value="Print">
 
-                                </form>
-                                       
+                                    </form>
+
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>

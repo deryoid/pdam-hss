@@ -80,12 +80,12 @@ include '../../templates/head.php';
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
-                                            <?php
-                                            $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM ganti_meter ORDER BY id_gm DESC");
-                                            while ($row = $data->fetch_array()) {
-                                            ?>
-                                                <tbody style="background-color: white">
+                                            <tbody style="background-color: white">
+                                                <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM ganti_meter ORDER BY id_gm DESC");
+                                                while ($row = $data->fetch_array()) {
+                                                ?>
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td><?= $row['nama'] ?></td>
@@ -99,8 +99,8 @@ include '../../templates/head.php';
                                                             <a href="hapus?id=<?= $row['id_gm'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </tbody>
                                         </table>
                                     </div>
 

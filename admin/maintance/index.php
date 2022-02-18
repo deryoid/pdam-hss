@@ -81,16 +81,16 @@ include '../../templates/head.php';
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
-                                            <?php
-                                            $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM maintance AS m
+                                            <tbody style="background-color: white">
+                                                <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM maintance AS m
                                             LEFT JOIN sektor_atm AS sa ON m.id_sektoratm = sa.id_sektoratm
                                             LEFT JOIN barang AS b ON sa.kode_barang = b.kode_barang
                                             LEFT JOIN petugas AS p ON m.id_petugas = p.id_petugas
                                             ORDER BY m.id_maintance DESC");
-                                            while ($row = $data->fetch_array()) {
-                                            ?>
-                                                <tbody style="background-color: white">
+                                                while ($row = $data->fetch_array()) {
+                                                ?>
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td>
@@ -100,21 +100,21 @@ include '../../templates/head.php';
                                                                 <li>Link : <a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt">Lihat Map</a> </li>
                                                                 <li>Tanggal Peletakan :<?= $row['tgl_peletakan'] ?></li>
                                                             </ul>
-                                                       </td>
+                                                        </td>
                                                         <td><?= $row['status_maintance'] ?></td>
                                                         <td><?= $row['nama_petugas'] ?></td>
                                                         <td><?= $row['tgl_maintance'] ?></td>
                                                         <td><?= $row['keterangan'] ?></td>
                                                         <td align="center">
                                                             <!-- <a href="edit?id=<?= $row['id_maintance'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a> -->
-                                                            
+
                                                             <a href="index?id=<?= $row['id_maintance'] ?>" class="btn btn-info btn-sm" title="Kirim"><i class="fa fa-mail-bulk"></i></a>
 
                                                             <a href="hapus?id=<?= $row['id_maintance'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </tbody>
                                         </table>
                                     </div>
 
@@ -161,68 +161,68 @@ include '../../templates/head.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-        $data = $koneksi->query("SELECT * FROM maintance AS m
+    $data = $koneksi->query("SELECT * FROM maintance AS m
         LEFT JOIN sektor_atm AS sa ON m.id_sektoratm = sa.id_sektoratm
         LEFT JOIN barang AS b ON sa.kode_barang = b.kode_barang
         LEFT JOIN petugas AS p ON m.id_petugas = p.id_petugas
         WHERE id_maintance = '$id'
         ")->fetch_array();
-// var_dump($data);die();
-        
-            $email = $data['email'];
-            $kode_barang = $data['kode_barang'];
-            $lokasi_atm = $data['lokasi_atm'];
-            $link_gmap = $data['link_gmap'];
-            $tgl_maintance = $data['tgl_maintance'];
+    // var_dump($data);die();
 
-            require_once('../../assets/phpmail/class.phpmailer.php');
-            require_once('../../assets/phpmail/class.smtp.php');
-            $mail = new PHPMailer();
+    $email = $data['email'];
+    $kode_barang = $data['kode_barang'];
+    $lokasi_atm = $data['lokasi_atm'];
+    $link_gmap = $data['link_gmap'];
+    $tgl_maintance = $data['tgl_maintance'];
 
-            $body = "Pemberitahuan Maintance untuk Sektor ".$data['kode_barang']." ".$data['lokasi_atm']." ".$data['link_gmap']." ".$data['tgl_maintance'];
+    require_once('../../assets/phpmail/class.phpmailer.php');
+    require_once('../../assets/phpmail/class.smtp.php');
+    $mail = new PHPMailer();
 
-            // $mail->CharSet =  "utf-8";
-            $mail->IsSMTP();
-            // enable SMTP authentication
-            $mail->SMTPDebug  = 1;
-            $mail->SMTPAuth = true;
-            // GMAIL username
-            $mail->Username = "qualita.indonesia.test@gmail.com";
-            // GMAIL password
-            $mail->Password = "qiindonesiatest123";
-            $mail->SMTPSecure = "ssl";
-            // sets GMAIL as the SMTP server
-            $mail->Host = "smtp.gmail.com";
-            // set the SMTP port for the GMAIL server
-            $mail->Port = "465";
-            $mail->From = 'qualita.indonesia.test@gmail.com';
-            $mail->FromName = 'Admin Maintance PT.Qualita Indonesia';
+    $body = "Pemberitahuan Maintance untuk Sektor " . $data['kode_barang'] . " " . $data['lokasi_atm'] . " " . $data['link_gmap'] . " " . $data['tgl_maintance'];
+
+    // $mail->CharSet =  "utf-8";
+    $mail->IsSMTP();
+    // enable SMTP authentication
+    $mail->SMTPDebug  = 1;
+    $mail->SMTPAuth = true;
+    // GMAIL username
+    $mail->Username = "qualita.indonesia.test@gmail.com";
+    // GMAIL password
+    $mail->Password = "qiindonesiatest123";
+    $mail->SMTPSecure = "ssl";
+    // sets GMAIL as the SMTP server
+    $mail->Host = "smtp.gmail.com";
+    // set the SMTP port for the GMAIL server
+    $mail->Port = "465";
+    $mail->From = 'qualita.indonesia.test@gmail.com';
+    $mail->FromName = 'Admin Maintance PT.Qualita Indonesia';
 
 
-            $mail->AddAddress($email);
-            $mail->Subject  =  'Maintance';
-            $mail->IsHTML(true);
-            $mail->MsgHTML($body);
-            if ($mail->Send()) {
-                $_SESSION['pesan'] = "Maintance Dikirimkan";
-                echo "<script> 
+    $mail->AddAddress($email);
+    $mail->Subject  =  'Maintance';
+    $mail->IsHTML(true);
+    $mail->MsgHTML($body);
+    if ($mail->Send()) {
+        $_SESSION['pesan'] = "Maintance Dikirimkan";
+        echo "<script> 
                 window.location.replace('../maintance/');
                 </script>"; //jika pesan terkirim
 
-            } else {
-                $_SESSION['pesan'] = "Gagal".$mail->ErrorInfo;
-                echo "<script> 
+    } else {
+        $_SESSION['pesan'] = "Gagal" . $mail->ErrorInfo;
+        echo "<script> 
                             window.location = 'index'; 
                         </script>";
-            }
-        }
-    
-    ?>
+    }
+}
 
-    
+?>
 
- <!-- MODAL Print -->
- <div id="modal_print" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+
+
+<!-- MODAL Print -->
+<div id="modal_print" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -230,18 +230,18 @@ if (isset($_GET['id'])) {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-    <!-- Start content -->
-        <div class="content">
-            <div class="container"> 
-                <div class="row">
-                     <div class="col-sm-12">
-                          <div class="card-box">
-                                <form class="form-horizontal" action="printmaintance" method="POST" target="blank">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                                    <form class="form-horizontal" action="printmaintance" method="POST" target="blank">
 
                                         <div class="form-group">
                                             <label class="col-sm-12 control-label">Pilih Petugas </label>
                                             <div class="col-sm-12">
-                                            <select class="form control select2" name="nama_petugas" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form control select2" name="nama_petugas" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
                                                     $sd = $koneksi->query("SELECT nama_petugas FROM perbaikan AS p
@@ -251,7 +251,7 @@ if (isset($_GET['id'])) {
                                                     foreach ($sd as $item) {
                                                     ?>
                                                         <option value="<?= $item['nama_petugas'] ?>"><?= $item['nama_petugas'] ?></option>
-                                                        
+
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -259,20 +259,20 @@ if (isset($_GET['id'])) {
                                         <hr>
                                         <input type="submit" name="print" class="btn btn-success" value="Print">
 
-                                </form>
-                                       
+                                    </form>
+
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
- <!-- MODAL Print -->
- <div id="modal_printatm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<!-- MODAL Print -->
+<div id="modal_printatm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -280,18 +280,18 @@ if (isset($_GET['id'])) {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-    <!-- Start content -->
-        <div class="content">
-            <div class="container"> 
-                <div class="row">
-                     <div class="col-sm-12">
-                          <div class="card-box">
-                                <form class="form-horizontal" action="printmaintanceatm" method="POST" target="blank">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                                    <form class="form-horizontal" action="printmaintanceatm" method="POST" target="blank">
 
                                         <div class="form-group">
                                             <label class="col-sm-12 control-label">Pilih ATM </label>
                                             <div class="col-sm-12">
-                                            <select class="form control select2" name="id_sektoratm" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form control select2" name="id_sektoratm" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
                                                     $atm = $koneksi->query("SELECT * FROM sektor_atm AS sa 
@@ -299,7 +299,7 @@ if (isset($_GET['id'])) {
                                                     foreach ($atm as $item) {
                                                     ?>
                                                         <option value="<?= $item['id_sektoratm'] ?>"><?= $item['kode_barang'] ?> | <?= $item['nama_barang'] ?> | <?= $item['bank'] ?></option>
-                                                        
+
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -307,13 +307,13 @@ if (isset($_GET['id'])) {
                                         <hr>
                                         <input type="submit" name="print" class="btn btn-success" value="Print">
 
-                                </form>
-                                       
+                                    </form>
+
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>

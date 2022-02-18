@@ -82,14 +82,14 @@ include '../../templates/head.php';
                                                     <th>Status Pasang</th>
                                                 </tr>
                                             </thead>
-                                            <?php
-                                            $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM pelanggan AS sa 
+                                            <tbody style="background-color: white">
+                                                <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM pelanggan AS sa 
                                             LEFT JOIN golongan AS g ON sa.id_golongan = g.id_golongan
                                             WHERE sa.status_pasang = 'Dipasang' ORDER BY sa.id_pelanggan DESC");
-                                            while ($row = $data->fetch_array()) {
-                                            ?>
-                                                <tbody style="background-color: white">
+                                                while ($row = $data->fetch_array()) {
+                                                ?>
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td><?= $row['no_pelanggan'] ?></td>
@@ -101,12 +101,12 @@ include '../../templates/head.php';
                                                         <td align="center"><a href="<?= $row['link_gmap'] ?>" target="blank" class="fa fa-map-marked-alt"> Lihat Map</a></td>
                                                         <td><?= $row['status'] ?></td>
                                                         <td>
-                                                            <?= $row['status_pasang'] ?> |  
-                                                            <a href="pemasangan?id=<?= $row['id_pelanggan'] ?>" class="btn btn-warning btn-sm" title="Pemasangan"><i class="fa fa-plus"></i></a> | <a href="<?= base_url() ?>/filependukung/<?= $row['bukti_pasang'] ?>" data-toggle="lightbox" data-title="Foto Bukti"><i class="fa fa-images"></i></a> 
+                                                            <?= $row['status_pasang'] ?> |
+                                                            <a href="pemasangan?id=<?= $row['id_pelanggan'] ?>" class="btn btn-warning btn-sm" title="Pemasangan"><i class="fa fa-plus"></i></a> | <a href="<?= base_url() ?>/filependukung/<?= $row['bukti_pasang'] ?>" data-toggle="lightbox" data-title="Foto Bukti"><i class="fa fa-images"></i></a>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            <?php } ?>
+                                                <?php } ?>
+                                            </tbody>
                                         </table>
                                     </div>
 
@@ -151,8 +151,8 @@ include '../../templates/head.php';
 </html>
 
 
- <!-- MODAL Print -->
- <div id="modal_print" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<!-- MODAL Print -->
+<div id="modal_print" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -160,40 +160,40 @@ include '../../templates/head.php';
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-    <!-- Start content -->
-        <div class="content">
-            <div class="container"> 
-                <div class="row">
-                     <div class="col-sm-12">
-                          <div class="card-box">
-                                <form class="form-horizontal" action="print" method="POST" target="blank">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                                    <form class="form-horizontal" action="print" method="POST" target="blank">
 
                                         <div class="form-group">
                                             <label class="col-sm-12 control-label">Pilih Kecamatan </label>
                                             <div class="col-sm-12">
-                                            <select class="form control select2" name="kecamatan" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form control select2" name="kecamatan" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
                                                     $sd = $koneksi->query("SELECT kecamatan FROM sektor_atm GROUP BY kecamatan");
                                                     foreach ($sd as $item) {
                                                     ?>
                                                         <option value="<?= $item['kecamatan'] ?>"><?= $item['kecamatan'] ?></option>
-                                                        
+
                                                     <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
                                         <hr>
                                         <input type="submit" name="print" class="btn btn-success" value="Print">
-                                        <a href="printseluruh" target="blank" class="btn bg-info"> Cetak Seluruh</a> 
+                                        <a href="printseluruh" target="blank" class="btn bg-info"> Cetak Seluruh</a>
 
-                                </form>
-                                       
+                                    </form>
+
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>

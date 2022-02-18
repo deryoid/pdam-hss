@@ -1,7 +1,7 @@
 <?php 
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "root";
 $name = "pkl_pdamhss";
 
 $koneksi = mysqli_connect($host, $user, $password, $name);
